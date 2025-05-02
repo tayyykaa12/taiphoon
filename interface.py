@@ -14,7 +14,7 @@ total_cal = 0
 
 def add_product():
     global total_cal
-    name = ent1.get().lower()
+    name = comb.get().lower()
     try:
         grams = float(ent2.get())
     except ValueError:
@@ -39,9 +39,9 @@ win.configure(bg="#e0f7fa")  # Блакитний фон
 nap1 = Label(win, text="Назва продукту:", font=('Comic Sans MS', 16), fg="black")
 nap1.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
-# Поле 1
-ent1 = Entry(win, font=('Comic Sans MS', 16), width=20)
-ent1.grid(row=0, column=1, padx=10, pady=10)
+# Випадаючий список
+comb = ttk.Combobox(win, font=('Comic Sans MS', 15), width=10, values=['Яблуко', 'Банан', 'Курка', 'Рис', 'Хліб'])
+comb.grid(row=0, column=1, padx=10, pady=10)
 
 # Напис 2
 nap2 = Label(win, text="Кількість грамів:", font=('Comic Sans MS', 16),  fg="black")
