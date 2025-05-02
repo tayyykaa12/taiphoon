@@ -36,7 +36,7 @@ win.geometry('500x600')
 win.configure(bg="#e0f7fa")  # Блакитний фон
 
 # Напис 1
-nap1 = Label(win, text="Назва продукту:", font=('Comic Sans MS', 16), bg="#4caf50", fg="white")
+nap1 = Label(win, text="Назва продукту:", font=('Comic Sans MS', 16), fg="black")
 nap1.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
 # Поле 1
@@ -44,7 +44,7 @@ ent1 = Entry(win, font=('Comic Sans MS', 16), width=20)
 ent1.grid(row=0, column=1, padx=10, pady=10)
 
 # Напис 2
-nap2 = Label(win, text="Кількість грамів:", font=('Comic Sans MS', 16), bg="#4caf50", fg="white")
+nap2 = Label(win, text="Кількість грамів:", font=('Comic Sans MS', 16),  fg="black")
 nap2.grid(row=1, column=0, padx=10, pady=10, sticky="w")
 
 # Поле 2
