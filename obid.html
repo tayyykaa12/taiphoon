@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обід</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Обід — розрахунок калорій</h2>
+        <input type="text" id="foodName" placeholder="Назва продукту">
+        <input type="number" id="foodGrams" placeholder="Кількість грамів">
+        <button onclick="addFood()">Додати</button>
+        <ul id="breakfastList"></ul>
+        <p>Разом: <span id="breakfastTotal">0</span> ккал</p>
+    </div>
+    <script>
+        const foodDB = {
+            'яблуко': 52,
+            'банан': 89,
+            'каша': 120,
+            'яйце': 155
+        };
+        let total = 0;
+        function addFood() {
+            const name = document.getElementById('foodName').value.toLowerCase();
+            const grams = parseFloat(document.getElementById('foodGrams').value);
+            if (foodDB[name] && grams > 0) {
+                const cal = (foodDB[name] * grams) / 100;
+                total += cal;
+                const li = document.createElement('li');
+                li.textContent = `${name} (${grams}г) – ${cal.toFixed(1)} ккал`;
+                document.getElementById('breakfastList').appendChild(li);
+                document.getElementById('breakfastTotal').textContent = total.toFixed(1);
+                const recent = JSON.parse(localStorage.getItem('recent') || '[]');
+                recent.unshift({ name, cal: cal.toFixed(1) });
+                localStorage.setItem('recent', JSON.stringify(recent.slice(0, 10)));
+            }
+        }
+    </script>
+</body>
+</html>

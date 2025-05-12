@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Трекер активності та сну</title>
+  <style>
+    body { font-family: Arial; background: #e8f5e9; padding: 20px; }
+    .container { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+    input, select { width: 100%; padding: 10px; margin-top: 10px; }
+    button { margin-top: 10px; width: 100%; padding: 10px; background: #388e3c; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    ul { margin-top: 20px; padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Трекер активності та сну</h2>
+    <select id="type">
+      <option value="Сон">Сон</option>
+      <option value="Прогулянка">Прогулянка</option>
+      <option value="Тренування">Тренування</option>
+    </select>
+    <input type="number" id="hours" placeholder="Кількість годин">
+    <button onclick="addActivity()">Додати</button>
+
+    <ul id="activityList"></ul>
+  </div>
+
+  <script>
+    const activityList = JSON.parse(localStorage.getItem("activities") || "[]");
+    const listEl = document.getElementById("activityList");
+
+    function render() {
+      listEl.innerHTML = "";
+      activityList.forEach(act => {
+        const li = document.createElement("li");
+        li.textContent = `${act.type}: ${act.hours} год.`;
+        listEl.appendChild(li);
+      });
+    }
+
+    function addActivity() {
+      const type = document.getElementById("type").value;
+      const hours = parseFloat(document.getElementById("hours").value);
+      if (hours > 0) {
+        activityList.push({ type, hours });
+        localStorage.setItem("activities", JSON.stringify(activityList));
+        render();
+        document.getElementById("hours").value = "";
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>

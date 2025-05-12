@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Трекер води</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #e0f7fa; }
+    .container { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+    input { padding: 10px; width: 100%; margin: 10px 0; }
+    button { padding: 10px; width: 100%; background: #00796b; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    #total { font-size: 18px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Трекер води</h2>
+    <input type="number" id="waterInput" placeholder="Кількість води (мл)">
+    <button onclick="addWater()">Додати</button>
+    <p id="total">Випито: 0 мл</p>
+  </div>
+
+  <script>
+    let totalWater = parseInt(localStorage.getItem("water") || "0");
+    const display = document.getElementById("total");
+    display.textContent = `Випито: ${totalWater} мл`;
+
+    function addWater() {
+      const input = document.getElementById("waterInput");
+      const amount = parseInt(input.value);
+      if (amount > 0) {
+        totalWater += amount;
+        localStorage.setItem("water", totalWater);
+        display.textContent = `Випито: ${totalWater} мл`;
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>

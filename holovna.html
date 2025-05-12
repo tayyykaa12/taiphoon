@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор калорій</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="top-icons">
+        <span>👤</span>
+        <span>🔔</span>
+        <span>⚙️</span>
+      </div>
+      <div class="status">
+        <p>Залишилось калорій: <strong id="leftCals">2300</strong></p>
+        <p>Вжито: <strong id="usedCals">0</strong></p>
+        <p>Випито води: <strong id="waterAmount">0</strong> мл</p>
+        <p>Активність/Сон: <strong id="activityHours">0</strong> год.</p>
+      </div>
+    </header>
+
+    <main>
+      <ul class="meals">
+        <li><a href="snidanok.html">🍳 Сніданок</a></li>
+        <li><a href="obid.html">🍲 Обід</a></li>
+        <li><a href="vechra.html">🍝 Вечеря</a></li>
+        <li><a href="perecus.html">🥪 Перекус/Інше</a></li>
+        <li><a href="water.html">💧 Трекер Води</a></li>
+        <li><a href="activity.html">🏃 Додати вправу/Сон</a></li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Зведення:</p>
+      <p>Залишилось: <span id="summaryLeft">2300</span> | Вжито: <span id="summaryUsed">0</span> | Мета: 2300</p>
+    </footer>
+  </div>
+
+  <script>
+    const goal = 2300;
+
+    // Калорії
+    const recent = JSON.parse(localStorage.getItem('recent') || '[]');
+    let total = recent.reduce((sum, item) => sum + parseFloat(item.cal || item.calories || 0), 0);
+
+    document.getElementById('usedCals').textContent = total.toFixed(1);
+    document.getElementById('leftCals').textContent = (goal - total).toFixed(1);
+    document.getElementById('summaryUsed').textContent = total.toFixed(1);
+    document.getElementById('summaryLeft').textContent = (goal - total).toFixed(1);
+
+    // Вода
+    const water = parseInt(localStorage.getItem('water') || '0');
+    document.getElementById('waterAmount').textContent = water;
+
+    // Активність / Сон
+    const activities = JSON.parse(localStorage.getItem('activities') || '[]');
+    const totalHours = activities.reduce((sum, item) => sum + (parseFloat(item.hours) || 0), 0);
+    document.getElementById('activityHours').textContent = totalHours.toFixed(1);
+  </script>
+</body>
+</html>
