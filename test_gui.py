@@ -21,7 +21,4 @@ ent.place(relx=0.1, rely=0.2)
 #  Кнопка
 but = Button(win, text='Click', font=('Comic Sans MS', 20), width=7, height=3, bg="red", fg='#00ff00', command=get_info)
 but.place(relx=0.1, rely=0.35)
-# Випадаючий список
-comb = ttk.Combobox(win, font=('Comic Sans MS', 15), width=10, values=['option1', 'option2', 'option3', 'option4'])
-comb.place(relx=0.4 ,rely=0.35)
-win.mainloop()
+
