@@ -60,5 +60,15 @@
     const totalHours = activities.reduce((sum, item) => sum + (parseFloat(item.hours) || 0), 0);
     document.getElementById('activityHours').textContent = totalHours.toFixed(1);
   </script>
+div style="margin-top: 30px; text-align: center;">
+
+
+  <!-- Кнопка завантаження SPEC-файлу -->
+  <a href="holovna.spec" download>
+    <button style="padding: 10px 20px; background-color: #2196f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      ⬇ Завантажити
+    </button>
+  </a>
+</div>
 </body>
 </html>
